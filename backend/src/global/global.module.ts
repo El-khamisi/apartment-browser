@@ -5,17 +5,17 @@ import { PrismaExceptionFilter } from './prisma-exception.filter';
 
 @Global()
 @Module({
-  providers: [
-    PrismaService,
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: ClassSerializerInterceptor,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: PrismaExceptionFilter,
-    },
-  ],
-  exports: [PrismaService],
+    providers: [
+        PrismaService,
+        {
+            provide: APP_INTERCEPTOR,
+            useClass: ClassSerializerInterceptor,
+        },
+        {
+            provide: APP_FILTER,
+            useClass: PrismaExceptionFilter,
+        },
+    ],
+    exports: [PrismaService],
 })
 export class GlobalModule {}
