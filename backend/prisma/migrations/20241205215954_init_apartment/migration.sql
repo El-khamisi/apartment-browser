@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "apartments" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL,
     "building_number" TEXT,
     "price" DECIMAL(10,2) NOT NULL,

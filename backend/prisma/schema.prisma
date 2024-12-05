@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Apartment {
-    id              String  @id @default(uuid())
+    id              String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     name            String
     building_number String?
     price           Decimal @db.Decimal(10, 2)
