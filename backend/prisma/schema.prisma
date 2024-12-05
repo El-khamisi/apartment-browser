@@ -6,3 +6,15 @@ datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
 }
+
+model Apartment {
+    id              String  @id @default(uuid())
+    name            String
+    building_number String?
+    price           Decimal @db.Decimal(10, 2)
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@map("apartments")
+}
