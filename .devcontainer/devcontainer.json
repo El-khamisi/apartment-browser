@@ -5,7 +5,7 @@
 	"dockerComposeFile": [
 		"./docker-compose.yml"
 	],
-	"service": "app",
+	"service": "backend",
 	// The optional 'workspaceFolder' property is the path VS Code should open by default when
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
 	"remoteUser": "node",
