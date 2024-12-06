@@ -2,8 +2,6 @@
 import Card from "@/components/card";
 import DetailedModal from "@/components/detailed-modal";
 import { listApartment } from "@/api";
-import { BASEURL } from "@/constants";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type Apartment = {
@@ -14,7 +12,11 @@ type Apartment = {
 };
 
 type ListRes = {
-  meta: {};
+  meta: {
+    page: number;
+    limit: number;
+    count: number;
+  };
   data: Apartment[];
 };
 
@@ -59,6 +61,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {apartments?.data.map((apartment) => (
               <Card
+                key={apartment.id}
                 apartment={apartment}
                 onSelect={() => {
                   setSelectedProductId(apartment.id);

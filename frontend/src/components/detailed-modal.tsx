@@ -1,6 +1,5 @@
 "use client";
 import { getApartment } from "@/api";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type Apartment = {
@@ -31,7 +30,7 @@ export default function DetailedModal({ apartmentId, onClose }: ModalProps) {
   };
   useEffect(() => {
     fetchApartment();
-  }, []);
+  }, [apartmentId]);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
