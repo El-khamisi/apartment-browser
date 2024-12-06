@@ -29,7 +29,7 @@ async function bootstrap() {
             customSiteTitle: 'Apartment Browser REST API',
         },
     );
-
+    app.enableCors();
     const port = process.env.PORT ?? 3000;
     await app.listen(port);
     logger.log('Application started and listening on port ' + port);

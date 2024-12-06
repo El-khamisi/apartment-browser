@@ -47,6 +47,7 @@ export class ApartmentsService {
             select: {
                 id: true,
                 name: true,
+                land_area: true,
                 price: true,
             },
         });

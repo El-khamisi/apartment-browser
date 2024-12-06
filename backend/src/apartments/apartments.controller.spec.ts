@@ -24,6 +24,8 @@ describe('ApartmentsController', () => {
             .createOne({
                 name: 'Apartment#123',
                 building_number: '123',
+                land_area: 270,
+                address: 'LA, US',
                 price: 123456,
             })
             .then((res) => instanceToPlain(res));

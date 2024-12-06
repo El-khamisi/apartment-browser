@@ -67,7 +67,24 @@ export class CreateOneBodyDto {
     @IsOptional()
     @IsString()
     @ApiPropertyOptional({ example: 379 })
-    building_number: string;
+    building_number?: string;
+
+    @IsNotEmpty()
+    @IsPositive()
+    @Type(() => Number)
+    @ApiProperty({ example: 120 })
+    land_area: number;
+
+    @IsOptional()
+    @IsString()
+    @ApiPropertyOptional({
+        example: 'Lorem Ipsum is simply dummy text',
+    })
+    about?: string;
+
+    @IsString()
+    @ApiProperty({ example: 'downtown, San Francisco' })
+    address: string;
 
     @IsNotEmpty()
     @IsPositive()

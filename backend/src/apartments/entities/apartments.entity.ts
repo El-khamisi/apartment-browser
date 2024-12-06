@@ -10,6 +10,10 @@ export class ShortApartmentEntity {
     name: string;
 
     @Type(() => Number)
+    @ApiProperty({ example: 120 })
+    land_area: number;
+
+    @Type(() => Number)
     @ApiProperty({ type: Number, example: 3256232 })
     price: Decimal;
 
@@ -26,7 +30,19 @@ export class ApartmentEntity {
     name: string;
 
     @ApiPropertyOptional({ example: 379 })
-    building_number: string;
+    building_number?: string;
+
+    @Type(() => Number)
+    @ApiProperty({ example: 120 })
+    land_area: number;
+
+    @ApiPropertyOptional({
+        example: 'Lorem Ipsum is simply dummy text',
+    })
+    about?: string;
+
+    @ApiProperty({ example: 'downtown, San Francisco' })
+    address: string;
 
     @Type(() => Number)
     @ApiProperty({ type: Number, example: 3256232 })
