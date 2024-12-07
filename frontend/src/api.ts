@@ -17,3 +17,18 @@ export async function getApartment(apartmentId: string) {
     alert(err);
   }
 }
+
+export async function postApartment(apartment: unknown) {
+  try {
+    const response = await fetch(baseurl + "/apartments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(apartment),
+    });
+    return response;
+  } catch (err) {
+    alert(err);
+  }
+}

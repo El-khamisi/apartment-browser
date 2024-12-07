@@ -12,17 +12,26 @@ services:
       - AWS_REGION=us-east-1
       - AWS_S3_BUCKET=apartment-browser
       - AWS_ENDPOINT_URL=http://minio:9000
-    volumes:
-      - ../.:/home/node/workspace
+    ports:
+      - 3000:3000
     depends_on:
       - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 5050:5050
+    depends_on:
+      - backend
 
   db:
     image: postgres:16
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=apartment
+      - POSTGRES_DB=prod-apartment
       - PGDATA=/var/lib/postgresql/data
     volumes:
       - db-data:/var/lib/postgresql/data

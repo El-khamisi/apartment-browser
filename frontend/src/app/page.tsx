@@ -3,6 +3,7 @@ import Card from "@/components/card";
 import DetailedModal from "@/components/detailed-modal";
 import { listApartment } from "@/api";
 import { useEffect, useState } from "react";
+import SubmitForm from "@/components/form";
 
 type Apartment = {
   id: string;
@@ -50,10 +51,11 @@ export default function Home() {
 
       <main className="container  mx-auto px-4 py-8">
         {/* <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} /> */}
+        <SubmitForm />
 
         {isLoading ? (
           <div className="text-center text-gray-500">Loading products...</div>
-        ) : apartments?.data.length === 0 ? (
+        ) : apartments?.data?.length === 0 ? (
           <div className="text-center text-gray-500">
             No products available.
           </div>

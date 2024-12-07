@@ -30,7 +30,7 @@ export default function DetailedModal({ apartmentId, onClose }: ModalProps) {
   };
   useEffect(() => {
     fetchApartment();
-  }, [apartmentId]);
+  }, [apartment, apartmentId]);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
