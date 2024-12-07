@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Row, Form, Button } from "react-bootstrap";
-import { postApartment } from "@/api";
+import { postApartment, uploadImages } from "@/api";
 
 type Apartment = {
   name: string;
@@ -8,6 +8,7 @@ type Apartment = {
   land_area: number;
   about?: string;
   address: string;
+  images: string[];
   price: number;
 };
 
@@ -19,8 +20,17 @@ export default function SubmitForm() {
     land_area: 0,
     about: "",
     address: "",
+    images: [],
     price: 0,
   });
+  const [images, setImages] = useState<FileList | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      setImages(files);
+    }
+  };
 
   const handleChange = (e: {
     target: { name: string; value: string | number };
@@ -35,7 +45,12 @@ export default function SubmitForm() {
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const respone = await postApartment(apartmentBody);
+    const imageUrls = await uploadImages(images);
+
+    const respone = await postApartment({
+      ...apartmentBody,
+      images: imageUrls,
+    });
 
     if (respone?.ok) {
       window.location.reload();
@@ -104,7 +119,7 @@ export default function SubmitForm() {
         </Col>
       </Row>
 
-      <Row className="justify-content-center">
+      <Row className="justify-content-between">
         <Col md={6}>
           <Form.Label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Price
@@ -112,9 +127,22 @@ export default function SubmitForm() {
           <Form.Control
             className="appearance-none w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             type="text"
+            placeholder="153"
             name="price"
             value={apartmentBody.price}
             onChange={handleChange}
+          />
+        </Col>
+        <Col md={6}>
+          <Form.Label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Images
+          </Form.Label>
+          <Form.Control
+            className="appearance-none w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            type="file"
+            multiple
+            name="images"
+            onChange={handleImageChange}
           />
         </Col>
       </Row>

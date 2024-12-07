@@ -1,9 +1,12 @@
 "use client";
 
+import Slider from "./slider";
+
 type Apartment = {
   id: string;
   name: string;
   land_area: number;
+  images: string[];
   price: number;
 };
 
@@ -20,6 +23,11 @@ export default function Card({ apartment, onSelect }: CardProps) {
     >
       <div className="flex flex-col justify-between  flex-grow">
         <div>
+          <Slider>
+            {apartment.images.map((img, i) => (
+              <img key={i} src={img} />
+            ))}
+          </Slider>
           <h2 className="text-base line-clamp-1 font-medium mt-2">
             {apartment.name}
           </h2>

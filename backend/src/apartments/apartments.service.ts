@@ -48,6 +48,7 @@ export class ApartmentsService {
                 id: true,
                 name: true,
                 land_area: true,
+                images: true,
                 price: true,
             },
         });

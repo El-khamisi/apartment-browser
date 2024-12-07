@@ -1,6 +1,7 @@
 "use client";
 import { getApartment } from "@/api";
 import { useEffect, useState } from "react";
+import Slider from "./slider";
 
 type Apartment = {
   id: string;
@@ -9,6 +10,7 @@ type Apartment = {
   land_area: number;
   about?: string;
   address: string;
+  images: string[];
   price: number;
   created_at: string;
 };
@@ -36,6 +38,11 @@ export default function DetailedModal({ apartmentId, onClose }: ModalProps) {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white mx-2 p-6 rounded shadow-lg flex flex-col md:flex-row gap-10 sm:w-2/3 lg:w-2/4">
         <div>
+          <Slider>
+            {apartment
+              ? apartment.images.map((img, i) => <img key={i} src={img} />)
+              : []}
+          </Slider>
           <h2 className="text-lg font-semibold mb-4">{apartment?.name}</h2>
 
           <p className="text-gray-700 text-sm leading-6 mb-4 line-clamp-6">

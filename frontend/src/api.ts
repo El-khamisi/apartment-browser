@@ -32,3 +32,21 @@ export async function postApartment(apartment: unknown) {
     alert(err);
   }
 }
+
+export async function uploadImages(files: FileList | null) {
+  if (!files) {
+    return [];
+  }
+  const form = new FormData();
+  Array.from(files).forEach((file) => form.append("files", file));
+
+  try {
+    const response = await fetch(baseurl + "/upload", {
+      method: "POST",
+      body: form,
+    });
+    return await response.json();
+  } catch (err) {
+    alert(err);
+  }
+}

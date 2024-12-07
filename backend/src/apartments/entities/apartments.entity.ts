@@ -13,6 +13,9 @@ export class ShortApartmentEntity {
     @ApiProperty({ example: 120 })
     land_area: number;
 
+    @ApiProperty()
+    images: string[];
+
     @Type(() => Number)
     @ApiProperty({ type: Number, example: 3256232 })
     price: Decimal;

@@ -9,6 +9,7 @@ type Apartment = {
   id: string;
   name: string;
   land_area: number;
+  images: string[];
   price: number;
 };
 
