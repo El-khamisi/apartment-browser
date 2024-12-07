@@ -14,6 +14,7 @@ const demoApartment = () => {
         land_area: faker.number.int({ min: 60, max: 300 }),
         about: faker.lorem.lines(),
         address: `${city}, ${country}`,
+        images: Array.from({ length: 3 }).map(() => faker.image.url()),
         price: faker.number.int({ min: 100, max: 999999999 }) / 100,
     };
 };

@@ -2,6 +2,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
 import { Type } from 'class-transformer';
 import {
+    IsArray,
     IsIn,
     IsNotEmpty,
     IsOptional,
@@ -85,6 +86,12 @@ export class CreateOneBodyDto {
     @IsString()
     @ApiProperty({ example: 'downtown, San Francisco' })
     address: string;
+
+    @IsOptional()
+    @IsArray()
+    @IsNotEmpty({ each: true })
+    @ApiPropertyOptional()
+    images: string[];
 
     @IsNotEmpty()
     @IsPositive()

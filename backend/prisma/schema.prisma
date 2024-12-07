@@ -8,13 +8,14 @@ datasource db {
 }
 
 model Apartment {
-    id              String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     name            String
     building_number String?
     land_area       Float
     about           String?
     address         String
-    price           Decimal @db.Decimal(10, 2)
+    images          String[] @default([])
+    price           Decimal  @db.Decimal(10, 2)
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt

@@ -44,6 +44,9 @@ export class ApartmentEntity {
     @ApiProperty({ example: 'downtown, San Francisco' })
     address: string;
 
+    @ApiProperty()
+    images: string[];
+
     @Type(() => Number)
     @ApiProperty({ type: Number, example: 3256232 })
     price: Decimal;
